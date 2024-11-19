@@ -21,7 +21,7 @@ db 0B8h
 dd 0AABBCCDDh
 ```
 
-##sahf
+## sahf
 def: store ah into flags <br/>
 opcode: 9E  <br/>
 -> Instruction:
@@ -38,7 +38,7 @@ opcode: 0F 84 cd
 db 0Fh 84h 05h
 ```
 
-##and eax, 0x31337
+## and eax, 0x31337
 opcode: 25 id <br/>
 -> Instruction:
 ```asm
@@ -47,7 +47,7 @@ dd 031337h
 mylabel:
 ```
 
-##ret
+## ret
 opcode: C3 <br/>
 -> Instruction:
 ```asm

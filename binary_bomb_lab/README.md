@@ -25,11 +25,38 @@ let's check out the phase_1 funct next. <br/>
 
 we can see a call to (string_not_equal) (probably 4 comparing string), as well a lea (with symbol bomb!'string') and a mov above. <br/>
 -> theory: these are ptrs to the required string and our input string, respectively. <br/>
-we can use da (access memory and displaying them as ascii) -> giving us "I am just a renegade hockey mom." for rdx and our input for rcx. <br/>
+we can use "da" (access memory and displaying them as ascii) -> giving us "I am just a renegade hockey mom." for rdx and our input for rcx. <br/>
 -> our answer for phase_1: I am just a renegade hockey mom.
 
 ## PHASE 2:
 let's check out phase_2 funct:
+
 <p>
-    <img src="phase1_funct.png"/>
+    <img src="phase2_funct1.png"/>
+</p>
+
+we can see a call to read_six_number, and checking the funct comfirms that it required six input from users. <br/>
+below is a group of instructions that access the 1st element and compare it to 1. <br/>
+
+* THEORY: the 1st num is 1.
+
+next, let's check out the rest of phase_2:
+
+<p>
+    <img src="phase2_funct2.png"/>
+</p>
+
+we can deduce that these instructions are a for/while loop that loops through 5 elements. <br/>
+[rbp+4] is used to keep track of loop count, and for each loop:
+- ecx is assigned as index of cur element, then is decreased by 1 and reassigned as the element at [rcx] index, and is multiply by 2 (shl) and compared to current element. <br/>
+-> Explaination: the code is checking if the current element is double the previous element or not. <br/>
+
+* THEORY: expected input is 1 2 4 8 16 32 <br/>
+After checking with the exe, we can comfirmed that our theory was right.
+
+## PHASE 3:
+let's check out phase_3 funct.
+
+<p>
+    <img src="phase2_funct2.png"/>
 </p>

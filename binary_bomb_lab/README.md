@@ -58,5 +58,21 @@ After checking with the exe, we can comfirmed that our theory was right.
 let's check out phase_3 funct.
 
 <p>
-    <img src="phase2_funct2.png"/>
+    <img src="phase3_funct1.png"/>
 </p>
+
+we run into some unexpected behaviour, but let's ignore that for now. <br/>
+we again see sscanf, signaling multiple inputs, and rdx & rcx being used to store (possibly) str ptr. The jump condition also required [rbp+64h] to be >= 2. <br/>
+
+THEORY: input expected 2 strings. <br/>
+-> Analysing the rdx & rcx shows that rdx points to "%d %d" while rcx is our input string. <br/>
+-> input expects 2 integers.
+
+Onto the rest of phase 3:
+<p>
+    <img src="phase3_funct2.png"/>
+</p>
+
+in the 1st group of instructions: [rbx+4] is compare with 7, and the jump condition is "above" (jump to bomb)
+
+THEORY: 1st number is <= 7

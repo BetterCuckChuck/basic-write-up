@@ -20,6 +20,6 @@ noteworthy instructions:
 
 let's check out the phase_1 funct next. <br/>
 <p>
-    <img src="main_funct.png"/>
+    <img src="phase1_funct.png"/>
 </p>
 

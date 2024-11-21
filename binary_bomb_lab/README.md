@@ -8,5 +8,5 @@ There are 6 phases, with (probably) increasing difficulty.<br/>
 - Ignore unnecessary blocks of instructions (stack overflow detection, etc.)
 
 ## PHASE 1:
-- let's set a bp at main 1st.
+- let's set a bp at main 1st. <br/>
 [main_funct.png](https://github.com/BetterCuckChuck/basic-write-up/blob/main/binary_bomb_lab/main_funct.png)

@@ -9,3 +9,4 @@ There are 6 phases, with (probably) increasing difficulty.<br/>
 
 ## PHASE 1:
 - let's set a bp at main 1st.
+[Image for main function](basic_write_up/binary_bomb_lab/main_funct)

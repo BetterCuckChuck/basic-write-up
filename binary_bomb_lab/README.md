@@ -9,5 +9,6 @@ There are 6 phases, with (probably) increasing difficulty.<br/>
 
 ## PHASE 1:
 - let's set a bp at main 1st. <br/>
-
-[Image for main function](main_funct.png)
+<p>
+    <img src="main_funct.png" width="220" height="240" />
+</p>

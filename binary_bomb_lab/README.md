@@ -75,4 +75,17 @@ Onto the rest of phase 3:
 
 in the 1st group of instructions: [rbx+4] is compare with 7, and the jump condition is "above" (jump to bomb)
 
-THEORY: 1st number is <= 7
+THEORY: 1st number is 0 <= x <= 7
+
+the group of instructions below move [rbp+134h] (our 1st element) into eax, then move a ptr to bomb0x0 to rcx. Then, it does a bunch of assignment and jmp to rax. <br/>
+-> since our num range is small, let's test out all possible 1st number. <br/>
+-> doing that would lead us to see that the jmp takes us to a bunch of repetitive asm lines, that add and sub rax/[rbp+44h] by 7Eh. <br/>
+at the end, it compares our 1st element to 5 and jmp (to bomb) if it's greater, narrowing down our options. <br/>
+next, it compares [rbp+44h] (which would have the value ffffff82) to [rbp+24h] (our 2nd element), and jmp (to safety) if equal.
+
+THEORY: our 1st number is between 0-5 and our 2nd number is -126 (ffffff82).
+
+after inputing 5 and -126, we comfirm that our theory is correct (at least with 1st element = 5).
+
+## PHASE 4:
+

@@ -10,5 +10,5 @@ There are 6 phases, with (probably) increasing difficulty.<br/>
 ## PHASE 1:
 - let's set a bp at main 1st. <br/>
 <p>
-    <img src="main_funct.png" width="220"/>
+    <img src="main_funct.png" width="600"/>
 </p>

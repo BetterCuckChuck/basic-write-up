@@ -96,3 +96,18 @@ let's check out phase4 funct:
 
 once again we see the same input format, expecting 2 integer. <br/>
 below, we see 2 jmp condition to safety: 1st element >= 0 and <= 0Eh. <br/>
+-> 1st element should be between 0 and Eh.
+
+next, we see [rbp+64h] is assigned 0Ah, r8d : 0Eh, edx set to 0 and ecx is our 1st element. Then a call is made to func4.
+
+let's step into func 4 then:
+
+
+<p>
+    <img src="phase4_func4-1.png"/>
+</p>
+
+there are lots of things of note:
+- 1st: the shadow space is being used, storing r8d, edx and ecx (possibly as integer arguments) <br/>
+- after all shenanigan: [rbp+100h] points to ecx (1st element: 0c), [rbx+108h] (0) to edx, and [rbx+110h] to r8d (Eh).
+- 

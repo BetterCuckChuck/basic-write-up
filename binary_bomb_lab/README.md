@@ -110,7 +110,7 @@ let's step into func 4 then:
 there are lots of things of note:
 - 1st: the shadow space is being used, storing r8d, edx and ecx (possibly as integer arguments) <br/>
 - after all shenanigan analysis: [rbp+100h] points to ecx (1st element: 0c), [rbp+108h] (0) to edx, and [rbp+110h] to r8d (Eh).
-- analysing the instructions reveals this pseduo-code:
+- analysing the instructions reveals this pseudo-code:
 
 ```cpp
 int cal(int a, int b, int c)
@@ -147,3 +147,50 @@ let's go to phase 5.
 </p>
 
 same expected input, 2 integer at [rbp+64h] and [rbp+84h] respectively.
+
+we check out the next snippet of code:
+
+<p>
+    <img src="phase5_funct2.png"/>
+</p>
+
+we see a few variable at play, with a, b being our input, and:
+[rbp+64h] = a &= 0Fh, [rbp+44h] = a, [rbp+4] = 0, [rbp+24h] = 0, rcx = 00007ff7`1ff4f1d0 (start of a series of variables)
+
+```
+00007ff7`1ff4f1d0 0a 00 00 00  ....
+00007ff7`1ff4f1d4 02 00 00 00  ....
+00007ff7`1ff4f1d8 0e 00 00 00  ....
+00007ff7`1ff4f1dc 07 00 00 00  ....
+00007ff7`1ff4f1e0 08 00 00 00  ....
+00007ff7`1ff4f1e4 0c 00 00 00  ....
+00007ff7`1ff4f1e8 0f 00 00 00  ....
+00007ff7`1ff4f1ec 0b 00 00 00  ....
+00007ff7`1ff4f1f0 00 00 00 00  ....
+00007ff7`1ff4f1f4 04 00 00 00  ....
+00007ff7`1ff4f1f8 01 00 00 00  ....
+00007ff7`1ff4f1fc 0d 00 00 00  ....
+00007ff7`1ff4f200 03 00 00 00  ....
+00007ff7`1ff4f204 09 00 00 00  ....
+00007ff7`1ff4f208 06 00 00 00  ....
+00007ff7`1ff4f20c 05 00 00 00  ....
+```
+
+next, there's appears to be a for/while loop:
+
+```
+[rbp+4]++
+rax = sign extend [rbp+64h]
+eax = [rcx + rax * 4]
+[rbp+64h] = eax
+[rbp+24h] += [rbp+64h]
+```
+with exit condition: [rbp+64h] == 0Fh
+
+next is 2 jmp condition: ([rbp+4] == 0Fh, [rbp+24h] == [rbp+84h]) <br/>
+-> Deduction: loop runs for 0Fh (15 times), each time it takes a different varible (from 0 -> 0Fh) and add it to [rbp+24h], stop when current element is 0Fh) <br/>
+
+THEORY : 1st element is 5 (so that when it ends at 0Fh it's 15 times already), 2nd element is sum(0 -> 0Fh) - 5 (73h) <br/>
+Checking with the program comfirms our theory.
+
+## PHASE 6:

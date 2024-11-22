@@ -109,5 +109,5 @@ let's step into func 4 then:
 
 there are lots of things of note:
 - 1st: the shadow space is being used, storing r8d, edx and ecx (possibly as integer arguments) <br/>
-- after all shenanigan: [rbp+100h] points to ecx (1st element: 0c), [rbx+108h] (0) to edx, and [rbx+110h] to r8d (Eh).
+- after all shenanigan: [rbp+100h] points to ecx (1st element: 0c), [rbp+108h] (0) to edx, and [rbp+110h] to r8d (Eh).
 - 

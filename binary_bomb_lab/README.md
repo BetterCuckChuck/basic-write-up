@@ -109,5 +109,22 @@ let's step into func 4 then:
 
 there are lots of things of note:
 - 1st: the shadow space is being used, storing r8d, edx and ecx (possibly as integer arguments) <br/>
-- after all shenanigan: [rbp+100h] points to ecx (1st element: 0c), [rbp+108h] (0) to edx, and [rbp+110h] to r8d (Eh).
-- 
+- after all shenanigan analysis: [rbp+100h] points to ecx (1st element: 0c), [rbp+108h] (0) to edx, and [rbp+110h] to r8d (Eh).
+- analysing the instructions reveals this pseduo-code:
+
+```cpp
+int cal(int a, int b, int c)
+{
+	int x = abs(b - a)/2 + a;
+	if (x < c)
+	{
+		return x + cal(x + 1, b, c);
+	}
+	else if (x > c)
+	{
+		return x + cal(a, x - 1, c);
+	}
+	else return x;
+}
+```
+with a = edx, b = r9d, c = ecx

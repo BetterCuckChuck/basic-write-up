@@ -128,3 +128,22 @@ int cal(int a, int b, int c)
 }
 ```
 with a = edx, b = r9d, c = ecx
+
+with that aside, let's check out the rest of phase_4:
+
+<p>
+    <img src="phase4_funct2.png"/>
+</p>
+
+as can see, our expected return value and 2nd element has to be 0Ah. And through brute-force, we know that 3 as 1st element will yield the correct answer.
+
+-> 3 0Ah is our required output.
+
+## PHASE 5:
+let's go to phase 5.
+
+<p>
+    <img src="phase5_funct1.png"/>
+</p>
+
+same expected input, 2 integer at [rbp+64h] and [rbp+84h] respectively.
